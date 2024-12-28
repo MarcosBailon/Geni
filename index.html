@@ -22,6 +22,7 @@
     }
     .message {
       font-size: 1.2em;
+      margin-top: 20px;
       margin-bottom: 20px;
     }
     button {
@@ -42,6 +43,11 @@
     #yes:hover {
       background-color: #218838;
     }
+    img {
+      display: block; /* Hace que la imagen sea un bloque */
+      margin: 0 auto 20px; /* Centra la imagen y le da un margen inferior */
+      width: 100px; /* Puedes cambiar el tamaño de la imagen */
+    }
   </style>
 </head>
 <body>
@@ -57,29 +63,34 @@
       "Hola estrellita, espero que ya te encuentres mejor de salud",
       "Sabes, no soy tan bueno con las palabras, pero quiero decirte que, este año no hubiera sido lo mismo sin tu presencia.",
       "Y que sin darme cuenta, pasaste de conocida a ser una de las personas más importantes en mi vida",
-      "Y aunque las palabras nunca sean suficientes para expresar lo que siento, quiero que sepas que eres muy especial para mí",
+      "Y aunque las palabras nunca sean suficientes para expresar lo que siento, quiero que sepa que eres muy especial para mí",
       "Por eso, me gustaría pasar tiempo contigo antes de que finalice este año.",
       "Quiero ver tus hermosos ojos y esos lindos cachetitos, ¿te gustaría ir mañana al cine?"
     ];
+
     const catImages = [
-      "https://MarcosBailon.github.io/Geni/media/cat.gif",
-      "https://MarcosBailon.github.io/Geni/media/cat1.jpg",
-      "https://MarcosBailon.github.io/Geni/media/oia.gif",
-      "https://MarcosBailon.github.io/Geni/media/spin.gif",
-      "https://MarcosBailon.github.io/Geni/media/cat2.jpg",
-      "https://MarcosBailon.github.io/Geni/media/cat3.jpg"
+      "media/cat.gif",
+      "media/cat1.jpg",
+      "media/oia.gif",
+      "media/spin.gif",
+      "media/cat2.jpg",
+      "media/cat3.jpg"
     ];
+
     let currentIndex = 0;
     const content = document.getElementById("content");
     const continueButton = document.getElementById("continue");
 
     function nextMessage() {
-      if (currentIndex < messages.length - 1) {
+      if (currentIndex < messages.length) {
+        // Mostramos la imagen correspondiente antes del mensaje
+        content.innerHTML = `
+          <img src="https://MarcosBailon.github.io/Geni/${catImages[currentIndex]}" alt="Gatito">
+          ${messages[currentIndex]}
+        `;
         currentIndex++;
-        content.innerText = messages[currentIndex];
-      } else if (currentIndex === messages.length - 1) {
-        currentIndex++;
-        content.innerText = "¿Qué me dices?";
+      } else {
+        content.innerHTML = "¿Qué me dices? <img src='https://MarcosBailon.github.io/Geni/media/cat.gif' alt='Gatito'>";
         continueButton.remove();
         createDecisionButtons();
       }
@@ -92,17 +103,22 @@
       yesButton.innerText = "Sí";
       yesButton.id = "yes";
 
-      let yesButtonSize = 16; // Font size of the "Sí" button
+      let yesButtonSize = 16; // Tamaño de la fuente del botón "Sí"
+      let noButtonSize = 16;  // Tamaño de la fuente del botón "No"
 
       noButton.onclick = () => {
-        yesButtonSize += 5; // Increase font size
+        // Acción para el botón "No" (aumenta el tamaño del botón "Sí")
+        yesButtonSize += 5; 
         yesButton.style.fontSize = yesButtonSize + "px";
-        if (yesButtonSize > 100) {
-          noButton.remove();  // Remove "No" button when "Sí" reaches 100px
+
+        // Si el tamaño de la fuente del botón "Sí" llega a 100px, ocultamos el botón "No"
+        if (yesButtonSize >= 100) {
+          noButton.remove();
         }
       };
 
       yesButton.onclick = () => {
+        // Acción para el botón "Sí"
         content.innerText = "¡Excelente diría Torres (Sr. Burns xdd)! Te veo mañana <3";
         noButton.remove();
         yesButton.remove();
