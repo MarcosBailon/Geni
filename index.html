@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación Especial</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    .container {
+      padding: 20px;
+      max-width: 500px;
+      margin: 100px auto;
+      background: white;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    .message {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #yes {
+      background-color: #28a745;
+    }
+    #yes:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="content" class="message">
+      Hola! esta es una invitación para "Nombre de ella", por favor haz clic en continuar.
+    </div>
+    <button id="continue" onclick="nextMessage()">Continuar</button>
+  </div>
+
+  <script>
+    const messages = [
+      "Espero que ya te encuentres mejor de salud...",
+      "Sabes, este año no hubiera sido lo mismo sin tu presencia.",
+      "Por eso, me gustaría pasar tiempo contigo antes de que acabe el año.",
+      "Quiero verte, vayamos mañana al cine"
+    ];
+    let currentIndex = 0;
+    const content = document.getElementById("content");
+    const continueButton = document.getElementById("continue");
+
+    function nextMessage() {
+      if (currentIndex < messages.length - 1) {
+        currentIndex++;
+        content.innerText = messages[currentIndex];
+      } else if (currentIndex === messages.length - 1) {
+        currentIndex++;
+        content.innerText = "¿Quieres ir?";
+        continueButton.remove();
+        createDecisionButtons();
+      }
+    }
+
+    function createDecisionButtons() {
+      const noButton = document.createElement("button");
+      const yesButton = document.createElement("button");
+      noButton.innerText = "No";
+      yesButton.innerText = "Sí";
+      yesButton.id = "yes";
+
+      let yesButtonSize = 16; // Font size of the "Sí" button
+
+      noButton.onclick = () => {
+        yesButtonSize += 5; // Increase font size
+        yesButton.style.fontSize = yesButtonSize + "px";
+        if (yesButtonSize > 50) {
+          noButton.remove();
+          yesButton.remove();
+          content.innerText = "¡Sabía que dirías que sí! Nos vemos mañana 😄";
+        }
+      };
+
+      yesButton.onclick = () => {
+        content.innerText = "¡Genial! Nos vemos mañana en el cine 🎥🍿";
+        noButton.remove();
+        yesButton.remove();
+      };
+
+      document.querySelector(".container").appendChild(noButton);
+      document.querySelector(".container").appendChild(yesButton);
+    }
+  </script>
+</body>
+</html>
