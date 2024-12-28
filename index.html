@@ -14,8 +14,8 @@
     }
     .container {
       padding: 20px;
-      max-width: 500px;
-      margin: 100px auto;
+      max-width: 600px;
+      margin: 50px auto;
       background: white;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
@@ -36,6 +36,11 @@
     button:hover {
       background-color: #0056b3;
     }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
     #yes {
       background-color: #28a745;
     }
@@ -46,6 +51,7 @@
 </head>
 <body>
   <div class="container">
+    <img id="cat-image" src="https://placekitten.com/500/300" alt="Gatito">
     <div id="content" class="message">
       Hola! esta es una invitación para "Nombre de ella", por favor haz clic en continuar.
     </div>
@@ -59,14 +65,22 @@
       "Por eso, me gustaría pasar tiempo contigo antes de que acabe el año.",
       "Quiero verte, vayamos mañana al cine"
     ];
+    const catImages = [
+      "https://placekitten.com/400/250",
+      "https://placekitten.com/450/300",
+      "https://placekitten.com/500/350",
+      "https://placekitten.com/600/400"
+    ];
     let currentIndex = 0;
     const content = document.getElementById("content");
+    const catImage = document.getElementById("cat-image");
     const continueButton = document.getElementById("continue");
 
     function nextMessage() {
       if (currentIndex < messages.length - 1) {
         currentIndex++;
         content.innerText = messages[currentIndex];
+        catImage.src = catImages[currentIndex]; // Cambiar imagen de gatito
       } else if (currentIndex === messages.length - 1) {
         currentIndex++;
         content.innerText = "¿Quieres ir?";
@@ -82,15 +96,16 @@
       yesButton.innerText = "Sí";
       yesButton.id = "yes";
 
-      let yesButtonSize = 16; // Font size of the "Sí" button
+      let yesButtonSize = 16; // Tamaño del botón "Sí"
 
       noButton.onclick = () => {
-        yesButtonSize += 5; // Increase font size
+        yesButtonSize += 5; // Incrementa el tamaño del botón "Sí"
         yesButton.style.fontSize = yesButtonSize + "px";
         if (yesButtonSize > 50) {
           noButton.remove();
           yesButton.remove();
           content.innerText = "¡Sabía que dirías que sí! Nos vemos mañana 😄";
+          catImage.src = "https://placekitten.com/700/450";
         }
       };
 
@@ -98,6 +113,7 @@
         content.innerText = "¡Genial! Nos vemos mañana en el cine 🎥🍿";
         noButton.remove();
         yesButton.remove();
+        catImage.src = "https://placekitten.com/800/500";
       };
 
       document.querySelector(".container").appendChild(noButton);
