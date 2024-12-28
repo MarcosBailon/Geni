@@ -57,19 +57,18 @@
       "Hola estrellita, espero que ya te encuentres mejor de salud",
       "Sabes, no soy tan bueno con las palabras, pero quiero decirte que, este año no hubiera sido lo mismo sin tu presencia.",
       "Y que sin darme cuenta, pasaste de conocida a ser una de las personas más importantes en mi vida",
-      "Y aunque las palabras nunca sean suficientes para expresar lo que siento, quiero que sepa que eres muy especial para mí",
+      "Y aunque las palabras nunca sean suficientes para expresar lo que siento, quiero que sepas que eres muy especial para mí",
       "Por eso, me gustaría pasar tiempo contigo antes de que finalice este año.",
       "Quiero ver tus hermosos ojos y esos lindos cachetitos, ¿te gustaría ir mañana al cine?"
     ];
     const catImages = [
-    "media/cat.gif",
-    "media/cat1.jpg",
-    "media/oia.gif",
-    "media/spin.gif",
-    "media/cat2.jpg",
-    "media/cat3.jpg"
-
-  ];
+      "media/cat.gif",
+      "media/cat1.jpg",
+      "media/oia.gif",
+      "media/spin.gif",
+      "media/cat2.jpg",
+      "media/cat3.jpg"
+    ];
     let currentIndex = 0;
     const content = document.getElementById("content");
     const continueButton = document.getElementById("continue");
@@ -98,10 +97,8 @@
       noButton.onclick = () => {
         yesButtonSize += 5; // Increase font size
         yesButton.style.fontSize = yesButtonSize + "px";
-        if (yesButtonSize > 50) {
-          noButton.remove();
-          yesButton.remove();
-          content.innerText = "¡No acepto un no por respuesta baby uwu! Nos vemos mañana 😄";
+        if (yesButtonSize > 100) {
+          noButton.remove();  // Remove "No" button when "Sí" reaches 100px
         }
       };
 
