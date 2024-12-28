@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invitación Especial</title>
+  <title>Mensaje importante</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,8 +14,8 @@
     }
     .container {
       padding: 20px;
-      max-width: 600px;
-      margin: 50px auto;
+      max-width: 500px;
+      margin: 100px auto;
       background: white;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
@@ -36,11 +36,6 @@
     button:hover {
       background-color: #0056b3;
     }
-    img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
     #yes {
       background-color: #28a745;
     }
@@ -51,39 +46,41 @@
 </head>
 <body>
   <div class="container">
-    <img id="cat-image" src="https://placekitten.com/500/300" alt="Gatito">
     <div id="content" class="message">
-      Hola! esta es una invitación para Génesis Reyes, por favor haz clic en continuar.
+      Hola! este es un mensaje para Génesis Reyes, por favor haga clic en continuar.
     </div>
     <button id="continue" onclick="nextMessage()">Continuar</button>
   </div>
 
   <script>
     const messages = [
-      "Espero que ya te encuentres mejor de salud...",
-      "Sabes, este año no hubiera sido lo mismo sin tu presencia.",
-      "Por eso, me gustaría pasar tiempo contigo antes de que acabe el año.",
-      "Quiero verte, vayamos mañana al cine"
+      "Hola estrellita, espero que ya te encuentres mejor de salud",
+      "Sabes, no soy tan bueno con las palabras, pero quiero decirte que, este año no hubiera sido lo mismo sin tu presencia.",
+      "Y que sin darme cuenta, pasaste de conocida a ser una de las personas más importantes en mi vida",
+      "Y aunque las palabras nunca sean suficientes para expresar lo que siento, quiero que sepa que eres muy especial para mí",
+      "Por eso, me gustaría pasar tiempo contigo antes de que finalice este año.",
+      "Quiero ver tus hermosos ojos y esos lindos cachetitos, ¿te gustaría ir mañana al cine?"
     ];
     const catImages = [
-      "https://placekitten.com/400/250",
-      "https://placekitten.com/450/300",
-      "https://placekitten.com/500/350",
-      "https://placekitten.com/600/400"
-    ];
+    "media/cat.gif",
+    "media/cat1.jpg",
+    "media/oia.gif",
+    "media/spin.gif",
+    "media/cat2.jpg",
+    "media/cat3.jpg"
+
+  ];
     let currentIndex = 0;
     const content = document.getElementById("content");
-    const catImage = document.getElementById("cat-image");
     const continueButton = document.getElementById("continue");
 
     function nextMessage() {
       if (currentIndex < messages.length - 1) {
         currentIndex++;
         content.innerText = messages[currentIndex];
-        catImage.src = catImages[currentIndex]; // Cambiar imagen de gatito
       } else if (currentIndex === messages.length - 1) {
         currentIndex++;
-        content.innerText = "¿Quieres ir?";
+        content.innerText = "¿Qué me dices?";
         continueButton.remove();
         createDecisionButtons();
       }
@@ -96,24 +93,22 @@
       yesButton.innerText = "Sí";
       yesButton.id = "yes";
 
-      let yesButtonSize = 16; // Tamaño del botón "Sí"
+      let yesButtonSize = 16; // Font size of the "Sí" button
 
       noButton.onclick = () => {
-        yesButtonSize += 5; // Incrementa el tamaño del botón "Sí"
+        yesButtonSize += 5; // Increase font size
         yesButton.style.fontSize = yesButtonSize + "px";
         if (yesButtonSize > 50) {
           noButton.remove();
           yesButton.remove();
-          content.innerText = "¡Sabía que dirías que sí! Nos vemos mañana 😄";
-          catImage.src = "https://placekitten.com/700/450";
+          content.innerText = "¡No acepto un no por respuesta baby uwu! Nos vemos mañana 😄";
         }
       };
 
       yesButton.onclick = () => {
-        content.innerText = "¡Genial! Nos vemos mañana en el cine 🎥🍿";
+        content.innerText = "¡Excelente diría Torres (Sr. Burns xdd)! Te veo mañana <3";
         noButton.remove();
         yesButton.remove();
-        catImage.src = "https://placekitten.com/800/500";
       };
 
       document.querySelector(".container").appendChild(noButton);
